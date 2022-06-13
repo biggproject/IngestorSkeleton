@@ -14,7 +14,6 @@ This endpoint takes in raw data and pushes it to kafka. It also takes a **topic*
 
 This endpoint defines an interface with fields that are required for the **harmonization process**. It also takes a **topic** and a **key** as request parameters.
 
-
 # Configuration
 
 It is possible to configure the ingestor using Spring properties by passing **environment variables** into the docker container. Spring implements different formats to represent configuration properties ["relaxed bindings"](https://docs.spring.io/spring-boot/docs/2.0.x/reference/html/boot-features-external-config.html#boot-features-external-config-relaxed-binding)). Injecting these properties as environment variables happens using the **uppercase format**.
@@ -28,8 +27,11 @@ It is possible to configure the ingestor using Spring properties by passing **en
 |property|default value|description|
 |-|-|-|
 |ingestor.kafka.send.timeout|10|How long the ingestor will wait **in seconds** to get and ACK from kafka, before returning an error.|
+|spring.kafka.template.default-topic||The topic data is sent to if no topic is given for the specific request|
+|spring.kafka.producer.bootstrap-servers||The hosts where kafka is deployed|
+|spring.kafka.producer.value-serializer||The class used by default to convert messages to Java classes|
 
-# Custom Implementation
+## Custom Implementation
 
 This ingestor uses an interface called `CustomService` that allows the processing of data to be extended. In order to do this, a bean should be created that implements the `CustomService` interface. The functionality in this bean is executed **after** data is received by the ingestor, and **before** the data is sent to Kafka.
 
