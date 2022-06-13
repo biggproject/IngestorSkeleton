@@ -31,7 +31,7 @@ It is possible to configure the ingestor using Spring properties by passing **en
 
 # Custom Implementation
 
-This ingestor uses an interface called 'CustomService' that allows the processing of data to be extended. In order to do this, a bean should be created that implements the 'CustomService' interface. The functionality in this bean is executed **after** data is received by the ingestor, and **before** the data is sent to Kafka.
+This ingestor uses an interface called `CustomService` that allows the processing of data to be extended. In order to do this, a bean should be created that implements the `CustomService` interface. The functionality in this bean is executed **after** data is received by the ingestor, and **before** the data is sent to Kafka.
 
 The interface requires the following methods to be implemented:
 
